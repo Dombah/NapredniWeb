@@ -33,17 +33,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function leadingProjects()
-    {
-        return $this->hasMany(Project::class, 'leader_id');
-    }
-
-    public function memberProjects()
-    {
-        return $this->belongsToMany(Project::class, 'project_user')
-            ->withTimestamps();
-    }
-
     /**
      * Get the attributes that should be cast.
      *
@@ -56,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function vodeniProjekti() {
+    return $this->hasMany(Project::class, 'voditelj_id');
+}
+public function projekti() {
+    return $this->belongsToMany(Project::class, 'project_user');
+}
+
 }

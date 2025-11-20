@@ -10,6 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+
+                    <a href="/projects" class="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-md hover:bg-indigo-700">
+                        {{ __('Projects') }}
+                    </a>
                 </div>
             </div>
         </div>

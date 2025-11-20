@@ -2,31 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'leader_id',
-        'name',
-        'description',
-        'price',
-        'completed_tasks',
-        'start_date',
-        'end_date',
+     protected $fillable = [
+        'naziv', 'opis', 'cijena', 'obavljeni_poslovi', 'datum_pocetka', 'datum_zavrsetka', 'voditelj_id'
     ];
 
-    public function leader()
-    {
-        return $this->belongsTo(User::class, 'leader_id');
+    public function voditelj() {
+        return $this->belongsTo(User::class, 'voditelj_id');
     }
 
-    public function members()
-    {
-        return $this->belongsToMany(User::class, 'project_user')
-            ->withTimestamps();
+    public function clanovi() {
+        return $this->belongsToMany(User::class, 'project_user');
     }
 }
