@@ -140,10 +140,3 @@ Provjerite da li je `.env` file ispravno konfiguriran:
 DB_CONNECTION=sqlite
 DB_DATABASE=/absolute/path/to/database/database.sqlite
 ```
-
-## Git ignore
-
-SQLite baza (`database/database.sqlite`) **JE uključena** u `.gitignore`, tako da neće biti pushana. Svaki korisnik mora pokrenuti `php artisan migrate --seed` nakon kloniranja.
-
-Ako želite uključiti primjer baze u repo, maknite `database/*.sqlite` iz `.gitignore` filea.
-
