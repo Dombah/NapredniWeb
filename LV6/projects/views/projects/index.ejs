@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 2px;
+        text-decoration: none;
+        color: white;
+        border-radius: 4px;
+      }
+      .btn-primary {
+        background-color: #4CAF50;
+      }
+      .btn-info {
+        background-color: #2196F3;
+      }
+      .btn-danger {
+        background-color: #f44336;
+      }
+      .btn:hover {
+        opacity: 0.8;
+      }
+      .add-btn {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    
+    <div class="add-btn">
+      <a href="/projects/new" class="btn btn-primary">Dodaj novi projekt</a>
+    </div>
+
+    <% if (projects.length === 0) { %>
+      <p>Nema projekata u evidenciji.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th>Cijena (EUR)</th>
+            <th>Obavljeni poslovi</th>
+            <th>Datum početka</th>
+            <th>Datum završetka</th>
+            <th>Akcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% projects.forEach(function(project) { %>
+            <tr>
+              <td><%= project.naziv %></td>
+              <td><%= project.opis %></td>
+              <td><%= project.cijena.toFixed(2) %></td>
+              <td><%= project.obavljeniPoslovi %></td>
+              <td><%= project.datumPocetka %></td>
+              <td><%= project.datumZavrsetka %></td>
+              <td>
+                <a href="/projects/<%= project.id %>" class="btn btn-info">Detalji</a>
+                <a href="/projects/<%= project.id %>/edit" class="btn btn-info">Uredi</a>
+                <a href="/projects/<%= project.id %>/delete" class="btn btn-danger" onclick="return confirm('Jeste li sigurni da želite obrisati ovaj projekt?')">Obriši</a>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+  </body>
+</html>
